@@ -10,15 +10,6 @@ require '../SMSTemplate.php';
 			<div>
 				<a class="btn btn-default" href="#TemplateAdd"><i class="fa fa-plus-circle"></i> Add New</a>
 			</div>
-			<div>
-				<form class="form-inline" role="form" method="POST" action="#contactgroups">
-				  <div class="form-group">
-					<input type="text" class="form-control" id="groupName" placeholder="Group Name" value="" />
-					<button type="submit" class="btn btn-primary" id="searchgroups">SEARCH</button>
-				  </div>
-				  
-				</form>
-			</div>
 			<?php
 $templates_table = new SMSTemplate();
 $Tablerows = $templates_table->get_all_templates();
@@ -28,6 +19,7 @@ echo 	'<div >
 					  <tr class="info">
 						<th>Template ID</th>
 					    <th>Template name</th>
+					    <th>Template Message</th>
 						<th>Actions</th>
 					  </tr>
 					</thead>

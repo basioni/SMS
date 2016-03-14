@@ -47,6 +47,7 @@
 					<div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#menuaccordion" href="#collapse2"><i class="fa fa-envelope-o"></i> My SMS <i class="fa fa-sort-down"></i></a></h4></div>
 					<div id="collapse2" class="panel-collapse collapse">
 						<ul class="list-group">
+							<li class="list-group-item" ><a href="#smsTemplates"><i class="fa fa-paper-plane"></i> SMS Templates</a></li>
 							<li class="list-group-item" ><a href="#sendingsms"><i class="fa fa-paper-plane"></i> Send SMS</a></li>
 							<li class="list-group-item"><a href="#scheduledsms"><i class="fa fa-hourglass-half"></i> Scheduled SMS</a></li>
 							<li class="list-group-item"><a href="#birthdaywishes"><i class="fa fa-birthday-cake"></i> Birthday Wish SMS</a></li>

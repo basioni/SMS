@@ -1,18 +1,21 @@
 <?php
 
-require 'contactGroups.php';
+require 'SMSTemplate.php';
 
 
-$group = new ContactGroups();
-if(isset($_POST["addNewGroupForm"]))
+$template = new SMSTemplate();
+if(isset($_POST["addNewTemplateForm"]))
 {
 
-if(isset($_POST["groupName"]))
-$group->group_name = $_POST["groupName"];
+if(isset($_POST["templateName"]))
+$template->template_name = $_POST["templateName"];
 
-$group->insert_group();
+if(isset($_POST["templateMessage"]))
+$template->template_message = $_POST["templateMessage"];
 
-echo '<script>location.replace("../../#contactgroups");</script>';
+$template->insert_template();
+
+echo '<script>location.replace("../../#smsTemplates");</script>';
 }
 
 ?>

@@ -1,15 +1,15 @@
 <?php
 
-require 'contactGroups.php';
+require 'SMSTemplate.php';
 
 
-$group = new contactGroups();
+$template = new SMSTemplate();
 if(isset($_GET["id"]))
 {
-$group->group_id = $_GET["id"];
-$group->delete_group();
+$template->template_id = $_GET["id"];
+$template->delete_template();
 
-echo '<script>location.replace("../../#contactgroups");</script>';
+echo '<script>location.replace("../../#smsTemplates");</script>';
 }
 
 ?>
