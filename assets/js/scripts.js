@@ -48,7 +48,24 @@ var MenuApp = angular.module('MenuCntrlsApp', ['ngRoute']);
 			.when('/groupedit', {
 				templateUrl : function(GroupsEditParams) {return 'modules/contactGroups/view/groups_edit.php?id='+ GroupsEditParams.id;},
 				controller  : 'groupsController'
-			})			
+			})		
+			
+			// route for the SMS Templates View
+			.when('/smsTemplates', {
+				templateUrl : function(SMSParams) {return 'modules/SMSTemplate/view/Template_list.php?'+ SMSParams;},
+				controller  : 'SMSTemplateController'
+			})
+			
+			.when('/TemplateAdd', {
+				templateUrl : 'modules/SMSTemplate/view/Template_add.php',
+				controller  : 'SMSTemplateController'
+			})	
+			
+			.when('/templateview', {
+				templateUrl : function(GroupsParams) {return 'modules/SMSTemplate/view/Template_view.php?id='+ GroupsParams.id;},
+				controller  : 'groupsController'
+			})	
+			
 			// route for the Sending SMS View
 			.when('/sendingsms', {
 				templateUrl : 'pages/sending_sms.html',

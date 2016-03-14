@@ -38,9 +38,8 @@ var $template_message;
 	{
 	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
 	if ($conn->connect_error)
-	{
 		die('Could not connect: '.$conn->connect_error);
-	}
+	
 	$conn->query("DELETE FROM sms_templates WHERE template_id=". $this->template_id ." ;");
 	$conn->close();
 	}
@@ -48,13 +47,12 @@ var $template_message;
 	///////////////////////////////////////////////////////// Load Template from DB
 	function load_template($id)
 	{
-	$all_contacts = '';
+	$templates_results = '';
 	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
 	
 	if ($conn->connect_error)
-	{
 		die('Could not connect: '.$conn->connect_error);
-	}
+	
 	$result = $conn->query("SELECT * FROM sms_templates WHERE template_id= ". $id ." ;");
 
 	while($row = $result->fetch_assoc())
@@ -66,8 +64,8 @@ var $template_message;
 	$conn->close();
 	}
 	
-	/////////////////////////////////////////////////////////Get Single Contact Group 
-	function get_group()
+	/////////////////////////////////////////////////////////Get Single template 
+	function get_template()
 	{
 	$all_groups = '';
 	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
@@ -75,60 +73,63 @@ var $template_message;
 	if ($conn->connect_error)
 		die('Could not connect: '.$conn->connect_error);
 		
-	$result = $conn->query("SELECT * FROM contact_groups WHERE group_id= ". $this->group_id ." ;");
+	$result = $conn->query("SELECT * FROM sms_templates WHERE template_id= ". $this->template_id ." ;");
 	while($row = $result->fetch_assoc())
 	{
-	    $all_groups .= '<tr><td>Group ID</td><td>'.$row['group_id'].'</td></tr>';
-		$all_groups .= '<tr><td>Group Name</td><td>'.$row['group_name'].'</td></tr>';
+	    $all_groups .= '<tr><td>Template ID</td><td>'.$row['template_id'].'</td></tr>';
+		$all_groups .= '<tr><td>Template Name</td><td>'.$row['template_name'].'</td></tr>';
+		$all_groups .= '<tr><td>Template Message</td><td>'.$row['template_message'].'</td></tr>';
 	}
 	$conn->close();
 	return $all_groups;
 	}
 	
-	///////////////////////////////////////////////////////// GET all groups rows
-	function get_all_groups()
+	///////////////////////////////////////////////////////// GET all Templates 
+	function get_all_templates()
 	{	
-	$all_contacts = '';
+	$templates_results = '';
 	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
 	
 	if ($conn->connect_error)
 		die('Could not connect: '.$conn->connect_error);
 	
-	$result = $conn->query("SELECT * FROM contact_groups;");
+	$result = $conn->query("SELECT * FROM sms_templates;");
 
 	while($row = $result->fetch_assoc())
 	{
-		$all_contacts .= '<tr><td>'.$row['group_id'].'</td>';
-		$all_contacts .= '<td>'.$row['group_name'].'</td>';
-		$all_contacts .= '<td class="text-center"><a href="#groupview?id='.$row['group_id'].'" title="VIEW"><i class="fa fa-list"></i></a> <a href="#groupedit?id='.$row['group_id'].'" title="EDIT" ><i class="fa fa-pencil"></i></a> <a href="modules/contactGroups/Delete.php?id='.$row['group_id'].'" title="DELETE"><i class="fa fa-trash"></i></a></td></tr>';
+		$templates_results .= '<tr><td>'.$row['template_id'].'</td>';
+		$templates_results .= '<td>'.$row['template_name'].'</td>';
+		$templates_results .= '<td>'.$row['template_message'].'</td>';
+		$templates_results .= '<td class="text-center"><a href="#templateview?id='.$row['template_id'].'" title="VIEW"><i class="fa fa-list"></i></a>  <a href="modules/SMSTemplate/Delete.php?id='.$row['template_id'].'" title="DELETE"><i class="fa fa-trash"></i></a></td></tr>';
 	}
 
 	$conn->close();
 	
-	return $all_contacts;
+	return $templates_results;
 	}
 	
-	///////////////////////////////////////////////////////// GET all groups rows
-	function get_query_groups()
+	///////////////////////////////////////////////////////// GET all templates rows
+	function get_query_templates()
 	{	
-	$all_contacts = '';
+	$templates_results = '';
 	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
 	
 	if ($conn->connect_error)
 		die('Could not connect: '.$conn->connect_error);
 	
-	$result = $conn->query("SELECT * FROM contact_groups WHERE  group_name LIKE '". $this-group_name ."' ;");
+	$result = $conn->query("SELECT * FROM sms_templates WHERE  template_name LIKE '". $this-template_name ."' ;");
 
 	while($row = $result->fetch_assoc())
 	{
-		$all_contacts .= '<tr><td>'.$row['group_id'].'</td>';
-		$all_contacts .= '<td>'.$row['group_name'].'</td>';
-		$all_contacts .= '<td class="text-center"><a href="#groupview?id='.$row['group_id'].'" title="VIEW"><i class="fa fa-list"></i></a> <a href="#groupedit?id='.$row['group_id'].'" title="EDIT" ><i class="fa fa-pencil"></i></a> <a href="modules/contactGroups/Delete.php?id='.$row['group_id'].'" title="DELETE"><i class="fa fa-trash"></i></a></td></tr>';
+		$templates_results .= '<tr><td>'.$row['template_id'].'</td>';
+		$templates_results .= '<td>'.$row['template_name'].'</td>';
+		$templates_results .= '<td>'.$row['template_message'].'</td>';
+		$templates_results .= '<td class="text-center"><a href="#templateview?id='.$row['template_id'].'" title="VIEW"><i class="fa fa-list"></i></a><a href="modules/SMSTemplate/Delete.php?id='.$row['template_id'].'" title="DELETE"><i class="fa fa-trash"></i></a></td></tr>';
 	}
 
 	$conn->close();
 	
-	return $all_contacts;
+	return $templates_results;
 	}	
 	
 	
