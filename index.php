@@ -15,8 +15,9 @@
   <link rel="stylesheet" href="assets/css/style.css">
 
   <!-- Load Modules Controllers!-->
-  <script src="assets/js/scripts.js"></script>
-
+  <script src="assets/js/routers.js"></script>
+  <script src="assets/js/SMS.js"></script>
+  
   </head>
 <body ng-app="MenuCntrlsApp">
 <div  > 
@@ -50,16 +51,16 @@
 							<li class="list-group-item" ><a href="#smsTemplates"><i class="fa fa-paper-plane"></i> SMS Templates</a></li>
 							<li class="list-group-item" ><a href="#sendingsms"><i class="fa fa-paper-plane"></i> Send SMS</a></li>
 							<li class="list-group-item"><a href="#scheduledsms"><i class="fa fa-hourglass-half"></i> Scheduled SMS</a></li>
-							<li class="list-group-item"><a href="#birthdaywishes"><i class="fa fa-birthday-cake"></i> Birthday Wish SMS</a></li>
+							<li class="list-group-item"><a href="#birthdaywishes"><i class="fa fa-birthday-cake"></i> Birthday Wishes Reminders</a></li>
 							<li class="list-group-item"><a href="#smshistory"><i class="fa fa-history"></i> SMS History</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="panel panel-dark">
-					<div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#menuaccordion" href="#collapse3"><i class="fa fa-envelope-o"></i> My Appointments <i class="fa fa-sort-down"></i></a></h4></div>
+					<div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#menuaccordion" href="#collapse3"><i class="fa fa-bell"></i> My Appointments <i class="fa fa-sort-down"></i></a></h4></div>
 					<div id="collapse3" class="panel-collapse collapse">
 						<ul class="list-group">
-							<li class="list-group-item" ><a href="#sendingsms"><i class="fa fa-paper-plane"></i>Appointments</a></li>
+							<li class="list-group-item" ><a href="#sendingsms"><i class="fa fa-bell"></i> Appointments Reminders</a></li>
 						</ul>
 					</div>
 				</div>
