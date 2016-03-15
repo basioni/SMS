@@ -128,7 +128,21 @@ var $group_name;
 	return $all_contacts;
 	}	
 	
+			///////////////////////////////////////////////////////// GET all contacts Groups in select options
+	function get_short_options()
+	{	
+	$all_contacts = '';
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	if ($conn->connect_error) die('Could not connect: '.$conn->connect_error);
 	
+	$result = $conn->query("SELECT * FROM contact_groups;");
+	while($row = $result->fetch_assoc())
+		$all_contacts .= '<option value="'.$row['group_id'].'">'.$row['group_name'].' </option>';
+
+	$conn->close();
+	
+	return $all_contacts;
+	}
 	
 }
 

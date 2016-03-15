@@ -137,6 +137,21 @@ var $api_status;
 	
 	return $APIS;
 	}
+	///////////////////////////////////////////////////////// GET all API select options
+	function get_short_options()
+	{	
+	$all_contacts = '';
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	if ($conn->connect_error) die('Could not connect: '.$conn->connect_error);
+	
+	$result = $conn->query("SELECT * FROM SMS_apis WHERE api_status='Active' ORDER BY api_id DESC;");
+	while($row = $result->fetch_assoc())
+		$all_contacts .= '<option value="'.$row['api_id'].'">'.$row['api_gateway'].': '.$row['api_sender_id'].' </option>';
+
+	$conn->close();
+	
+	return $all_contacts;
+	}
 	
 	
 	

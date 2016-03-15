@@ -169,7 +169,21 @@ var $group;
 	return $all_contacts;
 	}
 	
+		///////////////////////////////////////////////////////// GET all contacts rows
+	function get_short_options()
+	{	
+	$all_contacts = '';
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	if ($conn->connect_error) die('Could not connect: '.$conn->connect_error);
 	
+	$result = $conn->query("SELECT * FROM contacts;");
+	while($row = $result->fetch_assoc())
+		$all_contacts .= '<option value="'.$row['sub_mobile'].'">'.$row['sub_first_name'].' '.$row['sub_last_name'].' - '.$row['sub_mobile'].' </option>';
+
+	$conn->close();
+	
+	return $all_contacts;
+	}
 	
 	
 	
