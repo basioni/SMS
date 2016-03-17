@@ -169,7 +169,7 @@ var $group;
 	return $all_contacts;
 	}
 	
-		///////////////////////////////////////////////////////// GET all contacts rows
+		///////////////////////////////////////////////////////// GET all contacts in select options
 	function get_short_options()
 	{	
 	$all_contacts = '';
@@ -185,6 +185,20 @@ var $group;
 	return $all_contacts;
 	}
 	
+			///////////////////////////////////////////////////////// GET all Group Members Numbers  in Array
+	function get_group_numbers($group_id)
+	{	
+	$ContactNumbers = array();
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	if ($conn->connect_error) die('Could not connect: '.$conn->connect_error);
+	$result = $conn->query("SELECT sub_mobile FROM contacts WHERE sub_group=".$group_id ."; ");
+	while($row = $result->fetch_assoc())
+	array_push($ContactNumbers,  $row["sub_mobile"]) ;
+
+	$conn->close();
+	
+	return $ContactNumbers;
+	}
 	
 	
 }
