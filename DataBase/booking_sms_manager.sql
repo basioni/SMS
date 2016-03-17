@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 14, 2016 at 11:22 PM
+-- Generation Time: Mar 17, 2016 at 02:38 AM
 -- Server version: 5.5.42-37.1
 -- PHP Version: 5.4.31
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `contacts` (
   `sub_birthday` date DEFAULT NULL,
   `sub_last_visit_date` date DEFAULT NULL,
   `sub_status` text COLLATE utf8_unicode_ci NOT NULL,
-  `sub_group` text COLLATE utf8_unicode_ci NOT NULL
+  `sub_group` text COLLATE utf8_unicode_ci
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -44,9 +44,9 @@ CREATE TABLE IF NOT EXISTS `contacts` (
 --
 
 INSERT INTO `contacts` (`sub_id`, `sub_first_name`, `sub_last_name`, `sub_email`, `sub_mobile`, `sub_address`, `sub_birthday`, `sub_last_visit_date`, `sub_status`, `sub_group`) VALUES
-(1, 'Ahmed', 'Fathy', 'ahmed@own-source.com', '+201022009313', '6 Mahmoud Aref, ', '1990-01-28', '0000-00-00', '', 'av,bv,cv,av'),
-(4, 'Kartikey', 'Tanna', 'ahmed@own-source.com', '+201212009313', '6 Mahmoud, Giza, Egypt.', '1990-01-28', '0000-00-00', '', 'av,bv,cv,avav'),
-(6, 'Ahmed', 'Bassioni', 'ahmed@own-source.com', '+201285272081', '6 Mahmoud Aref, Giza, Egypt.', '1990-01-28', '0000-00-00', '', 'av,bv,cv,bvbvav');
+(1, 'Ahmed', 'Fathy', 'ahmed@own-source.com', '+201022009313', '6 Mahmoud Aref, ', '1990-01-28', '0000-00-00', '', '2'),
+(4, 'Kartikey', 'Tanna', 'ahmed@own-source.com', '+201212009311', '6 Mahmoud, Giza, Egypt.', '1990-01-28', '0000-00-00', '', '2'),
+(6, 'Ahmed', 'Bassioni', 'ahmed@own-source.com', '+201285272081', '6 Mahmoud Aref, Giza, Egypt.', '1990-01-28', '0000-00-00', '', '0');
 
 -- --------------------------------------------------------
 
@@ -95,17 +95,51 @@ INSERT INTO `SMS_apis` (`api_id`, `api_reference_id`, `api_gateway`, `api_accoun
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sms_reminders`
+--
+
+CREATE TABLE IF NOT EXISTS `sms_reminders` (
+  `rmnd_id` int(225) NOT NULL,
+  `rmnd_to` text COLLATE utf8_unicode_ci NOT NULL,
+  `rmnd_date` date NOT NULL,
+  `rmnd_API` text COLLATE utf8_unicode_ci NOT NULL,
+  `rmnd_message` text COLLATE utf8_unicode_ci NOT NULL,
+  `rmnd_type` text COLLATE utf8_unicode_ci NOT NULL,
+  `rmnd_status` text COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sms_sends`
 --
 
 CREATE TABLE IF NOT EXISTS `sms_sends` (
   `snds_id` int(225) NOT NULL,
+  `snds_to` text COLLATE utf8_unicode_ci NOT NULL,
   `snds_date` date NOT NULL,
   `snds_API` int(225) NOT NULL,
   `snds_message` text COLLATE utf8_unicode_ci NOT NULL,
   `snds_type` text COLLATE utf8_unicode_ci NOT NULL,
   `snds_status` text COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `sms_sends`
+--
+
+INSERT INTO `sms_sends` (`snds_id`, `snds_to`, `snds_date`, `snds_API`, `snds_message`, `snds_type`, `snds_status`) VALUES
+(1, '+201285272081', '2016-03-16', 5, ' aaaaaaaaa', 'Custom', 'Sent'),
+(2, '+201022009313', '2016-03-16', 5, ' aaaaaaaaa', 'Custom', 'Sent'),
+(3, '+201212009311', '2016-03-16', 5, ' aaaaaaaaa', 'Custom', 'Sent'),
+(16, '+201212009311', '2016-03-16', 5, ' ssss', 'Custom', 'Sent'),
+(15, '+201022009313', '2016-03-16', 5, ' ssss', 'Custom', 'Sent'),
+(14, '+201212009311', '2016-03-16', 5, ' dddd', 'Custom', 'Sent'),
+(13, '+201022009313', '2016-03-16', 5, ' dddd', 'Custom', 'Sent'),
+(11, '+201022009313', '2016-03-16', 5, ' ssssss', 'Custom', 'Sent'),
+(12, '+201212009311', '2016-03-16', 5, ' ssssss', 'Custom', 'Sent'),
+(24, '+201212009311', '2016-01-01', 5, ' Hi all! This is Automated message', 'Scheduled', 'Planned'),
+(23, '+201022009313', '2016-01-01', 5, ' Hi all! This is Automated message', 'Scheduled', 'Planned');
 
 -- --------------------------------------------------------
 
@@ -150,6 +184,12 @@ ALTER TABLE `SMS_apis`
   ADD PRIMARY KEY (`api_id`);
 
 --
+-- Indexes for table `sms_reminders`
+--
+ALTER TABLE `sms_reminders`
+  ADD PRIMARY KEY (`rmnd_id`);
+
+--
 -- Indexes for table `sms_sends`
 --
 ALTER TABLE `sms_sends`
@@ -181,10 +221,15 @@ ALTER TABLE `contact_groups`
 ALTER TABLE `SMS_apis`
   MODIFY `api_id` int(225) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
+-- AUTO_INCREMENT for table `sms_reminders`
+--
+ALTER TABLE `sms_reminders`
+  MODIFY `rmnd_id` int(225) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `sms_sends`
 --
 ALTER TABLE `sms_sends`
-  MODIFY `snds_id` int(225) NOT NULL AUTO_INCREMENT;
+  MODIFY `snds_id` int(225) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `sms_templates`
 --

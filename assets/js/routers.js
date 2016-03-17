@@ -72,23 +72,23 @@ var MenuApp = angular.module('MenuCntrlsApp', ['ngRoute']);
 				controller  : 'sendingSMSController'
 			})
 			
-			// route for the scheduled SMS VIEW
+			// route for the SMS History
+			.when('/smshistory', {
+				templateUrl : 'modules/SMS/view/SMS_history.php',
+				controller  : 'SMSHistoryController'
+			})
+			
+			// route for the SMS History
 			.when('/scheduledsms', {
-				templateUrl : 'pages/scheduled_sms.html',
-				controller  : 'scheduledController'
-			})		
+				templateUrl : 'modules/SMS/view/SMS_scheduled.php',
+				controller  : 'SMSHistoryController'
+			})
 			
 			// route for the birthdaywishes SMS VIEW
 			.when('/birthdaywishes', {
 				templateUrl : 'pages/birthday_wishes.html',
 				controller  : 'birthdayWishesController'
 			})	
-			
-			// route for the SMS History VIEW
-			.when('/smshistory', {
-				templateUrl : 'pages/sms_history.html',
-				controller  : 'smshistoryController'
-			})		
 			
 			// route for the SMS APIS VIEW
 			.when('/smsApisList', {
