@@ -1,9 +1,107 @@
 <?php
 require "Services/Twilio.php";
 class SMS {
-
+var $snds_id = "";
+var $snds_to = "";
+var $snds_date = "";
+var $snds_API = "";
+var $snds_message = "";
+var $snds_type = "";
+var $snds_status= "";
 	
+/* insert new SMS to DB
+====================== */
 
+	function insert_Custom_sms_sends()
+	{
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	if ($conn->connect_error)
+		die('Could not connect: '.$conn->connect_error);
+	
+	$result = $conn->query("INSERT INTO sms_sends SET 
+	snds_to ='".$this->snds_to."' , 
+	snds_date ='".$this->snds_date."' , 
+	snds_API='".$this->snds_API."' , 
+	snds_message ='".$this->snds_message ."' , 
+	snds_type='Custom' , snds_status='Sent' 	;");
+
+	$conn->close();
+	}	
+
+/* insert new SMS to DB
+====================== */
+
+	function insert_Scheduled_sms_sends()
+	{
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	if ($conn->connect_error)
+		die('Could not connect: '.$conn->connect_error);
+	
+	$result = $conn->query("INSERT INTO sms_sends SET 
+	snds_to ='".$this->snds_to."' , 
+	snds_date ='".$this->snds_date."' , 
+	snds_API='".$this->snds_API."' , 
+	snds_message ='".$this->snds_message ."' , 
+	snds_type='Scheduled' , snds_status='Planned' 	;");
+
+	$conn->close();
+	}	
+	
+/* Get SMS History
+===========================*/ 		
+
+	function get_sms_history()
+	{	
+	$SMS = '';
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	
+	if ($conn->connect_error)
+		die('Could not connect: '.$conn->connect_error);
+	
+	
+	$result = $conn->query("SELECT * FROM sms_sends ORDER BY snds_id DESC ;");
+
+	while($row = $result->fetch_assoc())
+	{
+		$SMS .= '<tr><td>'.$row['snds_id'].'</td>';
+		$SMS .= '<td>'.$row['snds_to'].'</td>';
+		$SMS .= '<td>'.$row['snds_date'].'</td>';
+		$SMS .= '<td>'.$row['snds_message'].'</td>';
+		$SMS .= '<td>'.$row['snds_status'].'</td></tr>';
+	}
+
+	$conn->close();
+	
+	return $SMS;
+	}
+	
+	/* Get SMS Scheduled
+===========================*/ 		
+
+	function get_sms_scheduled()
+	{	
+	$SMS = '';
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	
+	if ($conn->connect_error)
+		die('Could not connect: '.$conn->connect_error);
+	
+	
+	$result = $conn->query("SELECT * FROM sms_sends WHERE snds_type='Scheduled' AND snds_status='Planned' ORDER BY snds_id DESC ;");
+
+	while($row = $result->fetch_assoc())
+	{
+		$SMS .= '<tr><td>'.$row['snds_id'].'</td>';
+		$SMS .= '<td>'.$row['snds_to'].'</td>';
+		$SMS .= '<td>'.$row['snds_date'].'</td>';
+		$SMS .= '<td>'.$row['snds_message'].'</td>';
+		$SMS .= '<td>'.$row['snds_status'].'</td></tr>';
+	}
+
+	$conn->close();
+	
+	return $SMS;
+	}
 	
 /* Send Message With Twilio
 ===========================*/ 	
