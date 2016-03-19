@@ -1,9 +1,10 @@
 <?php
 
 require 'contacts.php';
-
+require '../Reminder/Reminder.php';
 
 $contact = new Contacts();
+$reminder = new Reminder();
 if(isset($_POST["addNewContactForm"]))
 {
 
@@ -19,8 +20,6 @@ $contact->email = $_POST["email"];
 if(isset($_POST["mobile"]))
 $contact->mobile = $_POST["mobile"];
 
-if(isset($_POST["birthDay"]))
-$contact->birthday = $_POST["birthDay"];
 
 if(isset($_POST["address"]))
 $contact->address = $_POST["address"];
@@ -28,7 +27,17 @@ $contact->address = $_POST["address"];
 if(isset($_POST["groups"]))
 $contact->group .= $_POST["groups"];
 
+if(isset($_POST["years"]) && isset($_POST["months"]) && isset($_POST["years"]))
+$contact->birthday = $_POST["years"] ."-". $_POST["months"] ."-". $_POST["days"];
+
 $contact->insert_contact();
+
+$next_year = date("Y")  + 1;
+
+$reminder->rmnd_to = $contact->contact_id;
+$reminder->rmnd_date = $next_year ."-". $_POST["months"] ."-". $_POST["days"];
+
+$reminder->insert_birthdaywish_reminder();
 
 echo '<script>location.replace("../../#contactslist");</script>';
 }

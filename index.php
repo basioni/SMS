@@ -29,13 +29,13 @@
   </div>
 </nav>
 
-<section class="container-fluid" style="padding-top: 50px;" >
-	<div class="row" style="min-height: 650px;">
-		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 menu-dark" style="background: #222D32;padding: 0px;">
+<section class="container-fluid" style="padding-top: 50px;margin: 0 auto;  width: 100%; height:100%;border: 1px solid;" >
+	<div class="row" style="width: 100%; height:100%;border: 1px solid;">
+		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 menu-dark" style="background: #222D32;padding: 0px;left: 0; height:100%;">
 			<h2><i class="fa fa-tachometer"></i> Admin Dashboard</h2>
 			<div class="panel-group" id="menuaccordion">
 				<div class="panel panel-dark">
-					<div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#menuaccordion" href="#collapse1"><i class="fa fa-user-plus"></i> My Phonebook <i class="fa fa-sort-down"></i></a></h4></div>
+					<div class="panel-heading"><h4 class="panel-title"><label data-toggle="collapse" data-parent="#menuaccordion" data-target="#collapse1"><i class="fa fa-user-plus"></i> My Phonebook <i class="fa fa-sort-down"></i></label></h4></div>
 					<div id="collapse1" class="panel-collapse collapse">
 						<ul class="list-group">
 							<li class="list-group-item" ><a href="#contactslist"><i class="fa fa-user"></i> Contacts</a></li>
@@ -45,28 +45,28 @@
 				</div>
 
 				<div class="panel panel-dark">
-					<div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#menuaccordion" href="#collapse2"><i class="fa fa-envelope-o"></i> My SMS <i class="fa fa-sort-down"></i></a></h4></div>
+					<div class="panel-heading"><h4 class="panel-title"><label data-toggle="collapse" data-parent="#menuaccordion" data-target="#collapse2"><i class="fa fa-envelope-o"></i> My SMS <i class="fa fa-sort-down"></i></label></h4></div>
 					<div id="collapse2" class="panel-collapse collapse">
 						<ul class="list-group">
 							<li class="list-group-item" ><a href="#smsTemplates"><i class="fa fa-paper-plane"></i> SMS Templates</a></li>
 							<li class="list-group-item" ><a href="#sendingsms"><i class="fa fa-paper-plane"></i> Send SMS</a></li>
 							<li class="list-group-item"><a href="#scheduledsms"><i class="fa fa-hourglass-half"></i> Scheduled SMS</a></li>
-							<li class="list-group-item"><a href="#birthdaywishes"><i class="fa fa-birthday-cake"></i> Birthday Wishes Reminders</a></li>
 							<li class="list-group-item"><a href="#smshistory"><i class="fa fa-history"></i> SMS History</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="panel panel-dark">
-					<div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#menuaccordion" href="#collapse3"><i class="fa fa-bell"></i> My Appointments <i class="fa fa-sort-down"></i></a></h4></div>
+					<div class="panel-heading"><h4 class="panel-title"><label data-toggle="collapse" data-parent="#menuaccordion" data-target="#collapse3"><i class="fa fa-bell"></i> My Appointments <i class="fa fa-sort-down"></i></label></h4></div>
 					<div id="collapse3" class="panel-collapse collapse">
 						<ul class="list-group">
+							<li class="list-group-item"><a href="#birthdaywishes"><i class="fa fa-birthday-cake"></i> Birthday Wishes Reminders</a></li>
 							<li class="list-group-item" ><a href="#sendingsms"><i class="fa fa-bell"></i> Appointments Reminders</a></li>
 						</ul>
 					</div>
 				</div>
 				<!-- !-->
 				<div class="panel panel-dark">
-					<div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#menuaccordion" href="#MenuStngsList"><i class="fa fa-gears"></i> Settings <i class="fa fa-sort-down"></i></a></h4></div>
+					<div class="panel-heading"><h4 class="panel-title"><label data-toggle="collapse" data-parent="#menuaccordion" data-target="#MenuStngsList"><i class="fa fa-gears"></i> Settings <i class="fa fa-sort-down"></i></label></h4></div>
 					<div id="MenuStngsList" class="panel-collapse collapse">
 						<ul class="list-group">
 							<li class="list-group-item"><a href="#smsApisList"><i class="fa fa-cogs"></i> SMS API</a></li>

@@ -1,6 +1,10 @@
 <?php
 require '../contacts.php';
+require '../../contactGroups/contactGroups.php';
+require '../../DatePick/DatePick.php';
 
+$Calender = new DatePick();
+$Calender->Get_birthday_Calender();
 
 ?>
 
@@ -16,31 +20,31 @@ require '../contacts.php';
 					<label>Enter a new contact details: </label>
 					</div>
 					<div class="form-group">
-						 <input type="text" class="form-control" name="firstName" placeholder="First Name" value=""/>
+						 <input type="text" class="form-control" name="firstName" placeholder="First Name *" value="" required/>
 					</div>
 					<div class="form-group">
 						 <input type="text" class="form-control" name="lastName" placeholder="Last Name" />
 					</div>
 					<div class="form-group">
-						 <input type="text" class="form-control" name="mobile" placeholder="mobile" />
+						 <input type="text" class="form-control" name="mobile" placeholder="mobile *" required/>
 					</div>
 					<div class="form-group">
-						 <input type="email" class="form-control" name="email" placeholder="Email" />
+						 <input type="email" class="form-control" name="email" placeholder="Email *" required/>
 					</div>
 					<div class="form-group">
 						 <textarea class="form-control" rows="5" name="address" placeholder="Address"></textarea>
 					</div>
 					<div class="form-group">
-						 <input type="text" class="form-control" name="birthDay" placeholder="Date Of Birth" />
+						 <label >Date Of Birth:</label>
+							<?php	echo $Calender->years_selects ." ". $Calender->month_selects . " " . $Calender->day_selects; ?>
+					<!--	 <input type="text" class="form-control" name="birthDay" placeholder="Date Of Birth *" required/>  !-->
 					</div>
 					
 					<div class="form-group">
 						 <label >Add To Group:</label>
 						  <select  class="form-control" name="groups">
-							<option value="av" >a</option>
-							<option value="bv" >b</option>
-							<option value="cv">c</option>
-							<option value="dv">d</option>
+							<option value="" >None</option>
+							<?php echo contactgroups::get_short_options(); ?>
 						  </select>
 					</div>
 					

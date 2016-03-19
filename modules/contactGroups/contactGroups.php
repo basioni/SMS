@@ -145,7 +145,7 @@ var $group_name;
 	}
 	
 				///////////////////////////////////////////////////////// GET all contacts Groups in Array
-	function get_short_options()
+	function get_short_array()
 	{	
 	$all_contacts = '';
 	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");

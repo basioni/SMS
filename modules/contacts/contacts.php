@@ -34,12 +34,12 @@ var $group;
 	sub_mobile='".$this->mobile."' , 
 	sub_address='".$this->address."' , 
 	sub_birthday='".$this->birthday."' , 
-	sub_last_visit_date='".$this->last_visit."' ,
+	sub_last_visit_date='". date("Y-m-d") ."' ,
 	sub_status='".$this->status."' , 
 	sub_group='".$this->group."' 
 	;");
 
-
+    $this->contact_id = mysqli_insert_id($conn); 
 	$conn->close();
 	
 	}	
@@ -109,7 +109,10 @@ var $group;
 	$conn->close();
 	
 	}
-		///////////////////////////////////////////////////////// Single Contact
+
+	
+	
+	///////////////////////////////////////////////////////// Single Contact
 	function get_contact()
 	{
 	$all_contacts = '';
@@ -158,7 +161,7 @@ var $group;
 		$all_contacts .= '<td>'.$row['sub_first_name'].'</td>';
 		$all_contacts .= '<td>'.$row['sub_last_name'].'</td>';
 		$all_contacts .= '<td>'.$row['sub_mobile'].'</td>';
-		$all_contacts .= '<td>'.$row['sub_address'].'</td>';
+		$all_contacts .= '<td>'.$row['sub_email'].'</td>';
 		$all_contacts .= '<td>'.$row['sub_birthday'].'</td>';
 		$all_contacts .= '<td>'.$row['sub_last_visit_date'].'</td>';
 		$all_contacts .= '<td class="text-center"><a href="#contactview?contact='.$row['sub_id'].'" title="VIEW"><i class="fa fa-list"></i></a> <a href="#contactedit?contact='.$row['sub_id'].'" title="EDIT" ><i class="fa fa-pencil"></i></a> <a href="modules/contacts/Delete.php?contact='.$row['sub_id'].'" title="DELETE"><i class="fa fa-trash"></i></a></td></tr>';
@@ -169,6 +172,26 @@ var $group;
 	return $all_contacts;
 	}
 	
+		///////////////////////////////////////////////////////// GET Contact ID
+	function get_contact_id()
+	{
+	$id = '';
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	if ($conn->connect_error)
+		die('Could not connect: '.$conn->connect_error);
+	$result = $conn->query("SELECT sub_id FROM contacts WHERE 
+		sub_first_name= ".$this->first_name." AND
+		sub_last_name= ".$this->last_name." AND
+		sub_mobile= ".$this->mobile." AND
+		sub_email= ".$this->email."  ;");
+		
+	while($row = $result->fetch_assoc())
+	   $id .= $row['sub_id'];
+
+	$conn->close();
+	
+	return $id;
+	}
 		///////////////////////////////////////////////////////// GET all contacts in select options
 	function get_short_options()
 	{	
@@ -199,6 +222,7 @@ var $group;
 	
 	return $ContactNumbers;
 	}
+	
 	
 	
 }
