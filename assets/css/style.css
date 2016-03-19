@@ -47,28 +47,25 @@ border-radius: 0px;
 }
 
 
-.panel-dark a{
+.panel-dark label{
 text-decoration: none;
 background: none;
 color: #b8c7ce;
 }
 
-.panel-dark a:hover{
+.panel-dark label:hover{
 color: #fff;
 outline: none;
+cursor: pointer;
 }
 
-.panel-dark a:focus{
+.panel-dark label:focus{
 outline: none;
 color: #fff;
 }
 
-.panel-dark a:visited{
-color: #fff;
-outline: none;
-}
 
-.panel-dark .fa-sort-down{
+.panel-dark label .fa-sort-down{
 float:right;
 }
 

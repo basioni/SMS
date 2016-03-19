@@ -86,7 +86,12 @@ var MenuApp = angular.module('MenuCntrlsApp', ['ngRoute']);
 			
 			// route for the birthdaywishes SMS VIEW
 			.when('/birthdaywishes', {
-				templateUrl : 'pages/birthday_wishes.html',
+				templateUrl : 'modules/Reminder/view/Reminder_birthday_list.php',
+				controller  : 'birthdayWishesController'
+			})	
+			
+			.when('/birthdaysend', {
+				templateUrl : function(BirthdayParams) {return 'modules/Reminder/view/Reminder_birthday_send.php?id='+ BirthdayParams.id;},
 				controller  : 'birthdayWishesController'
 			})	
 			
