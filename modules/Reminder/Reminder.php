@@ -9,9 +9,8 @@ var $rmnd_message = "";
 var $rmnd_type = "";
 var $rmnd_status= "";
 	
-/* insert next borthday wish reminder to DB
+/* insert next birthday wish reminder to DB
 ====================== */
-
 	function insert_birthdaywish_reminder()
 	{
 	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
@@ -78,7 +77,6 @@ var $rmnd_status= "";
 
 	/* Update Birthdaywish
 ====================== */
-
 	function update_birthday_wish()
 	{
 	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
@@ -94,6 +92,66 @@ var $rmnd_status= "";
 	$conn->close();
 	}	
 
+/* insert next Appointment reminder to DB
+====================== */
+	function insert_Appointment_reminder()
+	{
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	if ($conn->connect_error)
+		die('Could not connect: '.$conn->connect_error);
+	
+	$result = $conn->query("INSERT INTO sms_reminders SET 
+	rmnd_to ='". $this->rmnd_to ."' , 
+	rmnd_date ='". $this->rmnd_date ."' , 
+	rmnd_type='Appointment' , rmnd_status='Planned' 	;");
+
+	$conn->close();
+	}	
+
+/* Get Appointments Remiders List
+===========================*/ 		
+
+	function get_all_Appointments()
+	{	
+	$Brithdays = '';
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	if ($conn->connect_error)
+		die('Could not connect: '.$conn->connect_error);
+	
+	$result = $conn->query("SELECT * FROM sms_reminders JOIN contacts on 	rmnd_to = sub_id WHERE rmnd_type='Appointment' AND rmnd_status='Planned' ;");
+
+	while($row = $result->fetch_assoc())
+	{
+	   $Brithdays .= '<tr><td>'.$row['rmnd_id'].'</td>';
+		$Brithdays .= '<td>'.$row['sub_first_name'] ." ". $row['sub_last_name'].'</td>';
+		$Brithdays .= '<td>'.$row['rmnd_date'].'</td>';
+		$Brithdays .= '<td>Planned</td>';
+		$Brithdays .= '<td class="text-center"><a href="#appointmentsend?id='.$row['rmnd_id'].'" title="RECORD VISIT"><i class="fa fa-calendar-check-o"></i></a></td></tr>';
+	}
+
+	$conn->close();
+	
+	return $Brithdays;
+	}
+	
+	/* Update Appointment
+====================== */
+	function update_appointment()
+	{
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	if ($conn->connect_error)
+		die('Could not connect: '.$conn->connect_error);
+	$result = $conn->query("UPDATE sms_reminders SET 
+	rmnd_to ='". $this->rmnd_to ."' , 
+	rmnd_date ='". $this->rmnd_date ."' , 
+	rmnd_API='". $this->rmnd_API ."' , 
+	rmnd_message ='". $this->rmnd_message ."' , 
+	rmnd_status='Sent' 	
+	WHERE  rmnd_id=". $this->rmnd_id ." ;");
+	$conn->close();
+	}	
+	
+	
 }
 
 ?>

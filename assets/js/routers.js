@@ -85,6 +85,7 @@ var MenuApp = angular.module('MenuCntrlsApp', ['ngRoute']);
 			})
 			
 			// route for the birthdaywishes SMS VIEW
+			
 			.when('/birthdaywishes', {
 				templateUrl : 'modules/Reminder/view/Reminder_birthday_list.php',
 				controller  : 'birthdayWishesController'
@@ -94,6 +95,17 @@ var MenuApp = angular.module('MenuCntrlsApp', ['ngRoute']);
 				templateUrl : function(BirthdayParams) {return 'modules/Reminder/view/Reminder_birthday_send.php?id='+ BirthdayParams.id;},
 				controller  : 'birthdayWishesController'
 			})	
+			
+			// route for the Appointments Reminders VIEW
+			.when('/appointmentslist', {
+				templateUrl : 'modules/Reminder/view/Reminder_appointment_list.php',
+				controller  : 'AppointmentsController'
+			})	
+			
+			.when('/appointmentsend', {
+				templateUrl : function(AppointmentsParams) {return 'modules/Reminder/view/Reminder_appointment_send.php?id='+ AppointmentsParams.id;},
+				controller  : 'AppointmentsController'
+			})				
 			
 			// route for the SMS APIS VIEW
 			.when('/smsApisList', {

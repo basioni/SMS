@@ -60,7 +60,7 @@
 					<div id="collapse3" class="panel-collapse collapse">
 						<ul class="list-group">
 							<li class="list-group-item"><a href="#birthdaywishes"><i class="fa fa-birthday-cake"></i> Birthday Wishes Reminders</a></li>
-							<li class="list-group-item" ><a href="#sendingsms"><i class="fa fa-bell"></i> Appointments Reminders</a></li>
+							<li class="list-group-item" ><a href="#appointmentslist"><i class="fa fa-bell"></i> Appointments Reminders</a></li>
 						</ul>
 					</div>
 				</div>

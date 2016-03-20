@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 19, 2016 at 05:54 PM
+-- Generation Time: Mar 19, 2016 at 08:01 PM
 -- Server version: 5.5.42-37.1
 -- PHP Version: 5.4.31
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `contacts` (
   `sub_last_visit_date` date DEFAULT NULL,
   `sub_status` text COLLATE utf8_unicode_ci NOT NULL,
   `sub_group` text COLLATE utf8_unicode_ci
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `contacts`
@@ -45,12 +45,9 @@ CREATE TABLE IF NOT EXISTS `contacts` (
 
 INSERT INTO `contacts` (`sub_id`, `sub_first_name`, `sub_last_name`, `sub_email`, `sub_mobile`, `sub_address`, `sub_birthday`, `sub_last_visit_date`, `sub_status`, `sub_group`) VALUES
 (1, 'Ahmed', 'Fathy', 'ahmed@own-source.com', '+201022009313', '6 Mahmoud Aref, ', '1990-01-28', '0000-00-00', '', '2'),
-(4, 'Kartikey', 'Tanna', 'ahmed@own-source.com', '+201212009311', '6 Mahmoud, Giza, Egypt.', '1990-01-28', '0000-00-00', '', '2'),
-(6, 'Ahmed', 'Bassioni', 'ahmed@own-source.com', '+201285272081', '6 Mahmoud Aref, Giza, Egypt.', '1990-01-28', '0000-00-00', '', '0'),
-(9, 'Hossam ', 'Ali', 'email@email.com', '+0102200000', '78 Haram st, Giza Egypt.', '2016-01-01', '0000-00-00', '', '2'),
+(16, 'MORAD', 'MOHSEN', 'Ahmed@email.com', '+01022009313', '', '2001-01-01', '2016-03-19', '', '2'),
 (15, 'Ahmed', 'Mora', 'Ahmed@email.com', '+201557248648', '7 address location, Egypt.', '2011-01-01', '2016-03-19', '', '2'),
 (14, 'Tamer', 'Mata', 'email@email.com', '+201022009292', '', '2016-01-01', '2016-03-19', '', '2'),
-(12, 'Test name 12', 'Hamed', 'email@email.com', '+01022009313', '', '2001-10-01', '0000-00-00', '', '2'),
 (13, 'Ahmed', 'Tanna', 'email@email.com', '+0102200000', '', '1999-10-01', '2016-03-19', '', '3');
 
 -- --------------------------------------------------------
@@ -111,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `sms_reminders` (
   `rmnd_message` text COLLATE utf8_unicode_ci,
   `rmnd_type` text COLLATE utf8_unicode_ci NOT NULL,
   `rmnd_status` text COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `sms_reminders`
@@ -128,7 +125,10 @@ INSERT INTO `sms_reminders` (`rmnd_id`, `rmnd_to`, `rmnd_date`, `rmnd_API`, `rmn
 (11, '14', '2017-03-19', NULL, NULL, 'BirthdayWish', 'Planned'),
 (12, '+201022009292', '2017-03-19', NULL, NULL, 'BirthdayWish', 'Planned'),
 (13, '+201557248648', '2016-03-19', '5', 'Hi ! This is Meeting Reminder Template 1 Message body', 'BirthdayWish', 'Sent'),
-(14, '15', '2017-03-19', NULL, NULL, 'BirthdayWish', 'Planned');
+(14, '15', '2017-03-19', NULL, NULL, 'BirthdayWish', 'Planned'),
+(15, '16', '2017-01-01', NULL, NULL, 'BirthdayWish', 'Planned'),
+(16, '+01022009313', '2016-03-19', '5', 'Hi ! This is Meeting Reminder Template 1 Message body', 'Appointment', 'Sent'),
+(17, '16', '2017-03-19', NULL, NULL, 'Appointment', 'Planned');
 
 -- --------------------------------------------------------
 
@@ -233,7 +233,7 @@ ALTER TABLE `sms_templates`
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `sub_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+  MODIFY `sub_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `contact_groups`
 --
@@ -248,7 +248,7 @@ ALTER TABLE `SMS_apis`
 -- AUTO_INCREMENT for table `sms_reminders`
 --
 ALTER TABLE `sms_reminders`
-  MODIFY `rmnd_id` int(225) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+  MODIFY `rmnd_id` int(225) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `sms_sends`
 --
