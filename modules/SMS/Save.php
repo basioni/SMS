@@ -32,7 +32,7 @@ for ($i=0; $i<count($recipients); $i++)
 	$SMS->insert_Custom_sms_sends();
 }
 
-
+echo'<script>alert("Your Message has been successfully sent! " );</script>';
 echo '<script>location.replace("../../#sendingsms");</script>';
 }
 
@@ -60,7 +60,7 @@ for ($i=0; $i<count($recipients); $i++)
 	$SMS->insert_Scheduled_sms_sends();
 }
 
-
+echo'<script>alert("Your Message has been successfully Scheduled! " );</script>';
 echo '<script>location.replace("../../#sendingsms");</script>';
 }
 

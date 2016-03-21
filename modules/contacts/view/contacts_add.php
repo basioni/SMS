@@ -9,8 +9,8 @@ $Calender->Get_birthday_Calender();
 ?>
 
 <section class="container-fluid">
-	<div class="row" style="min-height: 647px;">
-		<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" id="mainsection">
+	<div class="row" >
+		<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" id="mainsection">
 
 			<h2>Add New Contact</h2>
 			<div class="main-area">
@@ -37,7 +37,6 @@ $Calender->Get_birthday_Calender();
 					<div class="form-group">
 						 <label >Date Of Birth:</label>
 							<?php	echo $Calender->years_selects ." ". $Calender->month_selects . " " . $Calender->day_selects; ?>
-					<!--	 <input type="text" class="form-control" name="birthDay" placeholder="Date Of Birth *" required/>  !-->
 					</div>
 					
 					<div class="form-group">

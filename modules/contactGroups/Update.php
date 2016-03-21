@@ -13,6 +13,7 @@ $group->group_name = $_POST["groupName"];
 
 $group->update_group();
 
+echo'<script>alert("Your Group has been successfully Updated! " );</script>';
 echo '<script>location.replace("../../#groupview?id='.$_POST["group"].'");</script>';
 }
 

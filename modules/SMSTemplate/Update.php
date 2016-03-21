@@ -1,19 +1,21 @@
 <?php
+require 'SMSTemplate.php';
 
-require 'contactGroups.php';
+$template = new SMSTemplate();
+$template->load_template($_POST["templateID"]);
 
 
-$group = new contactGroups();
-$group->load_group($_POST["group"]);
-
-if(isset($_POST["updateGroupsForm"]))
+if(isset($_POST["updateTemplateForm"]))
 {
-if(isset($_POST["groupName"]))
-$group->group_name = $_POST["groupName"];
+if(isset($_POST["templateName"]))
+$template->template_name = $_POST["templateName"];
 
-$group->update_group();
+if(isset($_POST["templateMessage"]))
+$template->template_message = $_POST["templateMessage"];
 
-echo '<script>location.replace("../../#groupview?id='.$_POST["group"].'");</script>';
+$template->update_template();
+echo'<script>alert("Your Template has been successfully Updated! " );</script>';
+echo '<script>location.replace("../../#smsTemplates");</script>';
 }
 
 ?>

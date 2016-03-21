@@ -15,6 +15,7 @@ $template->template_message = $_POST["templateMessage"];
 
 $template->insert_template();
 
+echo'<script>alert("Your Template has been successfully Added! " );</script>';
 echo '<script>location.replace("../../#smsTemplates");</script>';
 }
 

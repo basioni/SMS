@@ -23,6 +23,7 @@ $contactID = $REMINDER->rmnd_to ;
 	$REMINDER->rmnd_date = $next_year . date("-m-d");
 	$REMINDER->rmnd_to = $contactID ;
 	$REMINDER->insert_birthdaywish_reminder();
+echo'<script>alert("Your Birthday Wish has been successfully sent! " );</script>';
 echo '<script>location.replace("../../#birthdaywishes");</script>';
 }
 

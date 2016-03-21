@@ -14,22 +14,26 @@ require '../SMSAPI.php';
 					<label>Enter your API details: </label>
 					</div>
 					<div class="form-group">
-						 <input type="text" class="form-control" name="referenceID" placeholder="Reference ID" value=""/>
+						 <input type="text" class="form-control" name="referenceID" placeholder="Reference ID*" value="" required/>
 					</div>
 					<div class="form-group">
-						 <input type="text" class="form-control" name="gateway" placeholder="Gateway" value=""/>
+						 <input type="text" class="form-control" name="gateway" placeholder="Gateway*" value="" required/>
 					</div>
 					<div class="form-group">
-						 <input type="text" class="form-control" name="accountSID" placeholder="Account SID" value=""/>
+						 <input type="text" class="form-control" name="accountSID" placeholder="Account SID*" value="" required/>
 					</div>
 					<div class="form-group">
-						 <input type="text" class="form-control" name="authToken" placeholder="Auth Token" value=""/>
+						 <input type="text" class="form-control" name="authToken" placeholder="Auth Token*" value="" required/>
 					</div>
 					<div class="form-group">
-						 <input type="text" class="form-control" name="senderID" placeholder="Sender" value=""/>
+						 <input type="text" class="form-control" name="senderID" placeholder="Sender*" value="" required/>
 					</div>
 					<div class="form-group">
-						 <input type="text" class="form-control" name="apistatus" placeholder="Status" value=""/>
+						 <label >Status* </label>
+						 <select class="form-control" id="apistatus" name="apistatus" required>
+								<option value="Active">Active</option>
+								<option value="Inactive">Inactive</option>
+						</select>
 					</div>
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary" name="addNewApiForm" value="Add SMS API" />

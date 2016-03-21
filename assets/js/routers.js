@@ -3,14 +3,14 @@ var MenuApp = angular.module('MenuCntrlsApp', ['ngRoute']);
 		$routeProvider
 		
 			.when('/dashboard', {
-				templateUrl : 'modules/dashboard/dashboard.php',
+				templateUrl : 'modules/dashboard/view/dashboard.php',
 				controller  : 'mainController'
 			})
 
 			// routes for the contact Module
 			.when('/contactslist', {
 				templateUrl : 'modules/contacts/view/contacts_list.php',
-				controller  : 'contactController'
+				controller  : 'contactsController'
 				
 			})			
 			
@@ -60,6 +60,11 @@ var MenuApp = angular.module('MenuCntrlsApp', ['ngRoute']);
 				templateUrl : 'modules/SMSTemplate/view/Template_add.php',
 				controller  : 'SMSTemplateController'
 			})	
+			
+			.when('/templateedit', {
+				templateUrl : function(TemplateParams) {return 'modules/SMSTemplate/view/Template_edit.php?id='+ TemplateParams.id;},
+				controller  : 'contactController'
+			})
 			
 			.when('/templateview', {
 				templateUrl : function(GroupsParams) {return 'modules/SMSTemplate/view/Template_view.php?id='+ GroupsParams.id;},

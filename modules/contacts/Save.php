@@ -42,6 +42,7 @@ $reminder->insert_birthdaywish_reminder();
 $reminder->rmnd_date = $next_year ."-". date("m-d");
 $reminder->insert_Appointment_reminder();
 
+echo'<script>alert("Your Contact has been successfully Saved! " );</script>';
 echo '<script>location.replace("../../#contactslist");</script>';
 }
 

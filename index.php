@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Dashboard - SMS Manager</title>
+  <title>SMS Manager</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -14,14 +14,19 @@
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
   <link rel="stylesheet" href="assets/css/style.css">
 
-  <!-- Load Modules Controllers!-->
+  <!-- Load Modules Routers!-->
   <script src="assets/js/routers.js"></script>
+
+  <!-- Load Module Validations !-->
   <script src="assets/js/SMS.js"></script>
+
+  <!-- Load Modules Controllers!-->
+  <script src="modules/contacts/controllers/contactsController.js"></script>
   
   </head>
 <body ng-app="MenuCntrlsApp">
 <div  > 
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top" style="background: #3c8dbc;">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#dashboard">SMS MANAGER</a>
@@ -29,13 +34,13 @@
   </div>
 </nav>
 
-<section class="container-fluid" style="padding-top: 50px;margin: 0 auto;  width: 100%; height:100%;border: 1px solid;" >
-	<div class="row" style="width: 100%; height:100%;border: 1px solid;">
-		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 menu-dark" style="background: #222D32;padding: 0px;left: 0; height:100%;">
+<section class="container-fluid" style="padding-top: 50px;margin: 0 auto;  width: 100%; height:100%;" >
+	<div class="row" >
+		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 menu-dark" >
 			<h2><i class="fa fa-tachometer"></i> Admin Dashboard</h2>
 			<div class="panel-group" id="menuaccordion">
 				<div class="panel panel-dark">
-					<div class="panel-heading"><h4 class="panel-title"><label data-toggle="collapse" data-parent="#menuaccordion" data-target="#collapse1"><i class="fa fa-user-plus"></i> My Phonebook <i class="fa fa-sort-down"></i></label></h4></div>
+					<div class="panel-heading"><label class="panel-title" data-toggle="collapse" data-parent="#menuaccordion" data-target="#collapse1"><i class="fa fa-user-plus"></i> My Phonebook <i class="fa fa-sort-down"></i></label></div>
 					<div id="collapse1" class="panel-collapse collapse">
 						<ul class="list-group">
 							<li class="list-group-item" ><a href="#contactslist"><i class="fa fa-user"></i> Contacts</a></li>
@@ -45,7 +50,7 @@
 				</div>
 
 				<div class="panel panel-dark">
-					<div class="panel-heading"><h4 class="panel-title"><label data-toggle="collapse" data-parent="#menuaccordion" data-target="#collapse2"><i class="fa fa-envelope-o"></i> My SMS <i class="fa fa-sort-down"></i></label></h4></div>
+					<div class="panel-heading"><label class="panel-title" data-toggle="collapse" data-parent="#menuaccordion" data-target="#collapse2"><i class="fa fa-envelope-o"></i> My SMS <i class="fa fa-sort-down"></i></label></div>
 					<div id="collapse2" class="panel-collapse collapse">
 						<ul class="list-group">
 							<li class="list-group-item" ><a href="#smsTemplates"><i class="fa fa-paper-plane"></i> SMS Templates</a></li>
@@ -56,7 +61,7 @@
 					</div>
 				</div>
 				<div class="panel panel-dark">
-					<div class="panel-heading"><h4 class="panel-title"><label data-toggle="collapse" data-parent="#menuaccordion" data-target="#collapse3"><i class="fa fa-bell"></i> My Appointments <i class="fa fa-sort-down"></i></label></h4></div>
+					<div class="panel-heading"><label class="panel-title" data-toggle="collapse" data-parent="#menuaccordion" data-target="#collapse3"><i class="fa fa-bell"></i> My Appointments <i class="fa fa-sort-down"></i></label></div>
 					<div id="collapse3" class="panel-collapse collapse">
 						<ul class="list-group">
 							<li class="list-group-item"><a href="#birthdaywishes"><i class="fa fa-birthday-cake"></i> Birthday Wishes Reminders</a></li>

@@ -10,15 +10,6 @@ require '../contactGroups.php';
 			<div>
 				<a class="btn btn-default" href="#groupsadd"><i class="fa fa-plus-circle"></i> Add New</a>
 			</div>
-			<div>
-				<form class="form-inline" role="form" method="POST" action="#contactgroups">
-				  <div class="form-group">
-					<input type="text" class="form-control" id="groupName" placeholder="Group Name" value="" />
-					<button type="submit" class="btn btn-primary" id="searchgroups">SEARCH</button>
-				  </div>
-				  
-				</form>
-			</div>
 			<?php
 $groups_table = new ContactGroups();
 if (isset($_POST["groupName"]))

@@ -18,8 +18,8 @@ $group->load_group($_GET["id"]);
 					</div>
 					<input type="hidden" name="group" value="<?echo $_GET["id"];?> " />
 					<div class="form-group">
-						<label for="usrfirstname">Group Name:</label>
-						 <input type="text" class="form-control" name="groupName" value="<? echo $group->group_name;?>"/>
+						<label for="usrfirstname">Group Name*:</label>
+						 <input type="text" class="form-control" name="groupName" value="<? echo $group->group_name;?>" required/>
 					</div>
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary" name="updateGroupsForm" value="Update Group" />

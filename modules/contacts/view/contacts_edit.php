@@ -1,13 +1,13 @@
 <?php
 require '../contacts.php';
-
+require '../../contactGroups/contactGroups.php';
 $contact = new Contacts();
 $contact->load_contact($_GET["contact"]);
 ?>
 
 <section class="container-fluid">
-	<div class="row" style="min-height: 647px;">
-		<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" id="mainsection">
+	<div class="row" >
+		<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" id="mainsection">
 
 			<h2>Update Contact</h2>
 			<div class="main-area">
@@ -18,37 +18,35 @@ $contact->load_contact($_GET["contact"]);
 					</div>
 					<input type="hidden" name="contact" value="<?echo $_GET["contact"];?> " />
 					<div class="form-group">
-						<label for="usrfirstname">First Name:</label>
-						 <input type="text" class="form-control" name="firstName" value="<? echo $contact->first_name;?>"/>
+						<label for="usrfirstname">First Name*:</label>
+						 <input type="text" class="form-control" name="firstName" value="<? echo $contact->first_name;?>" required/>
 					</div>
 					<div class="form-group">
 						<label for="usrlastname">Last Name:</label>
-						 <input type="text" class="form-control" name="lastName" value="<? echo $contact->last_name;?>" />
+						 <input type="text" class="form-control" name="lastName" value="<? echo $contact->last_name;?>"  />
 					</div>
 					<div class="form-group">
-						<label for="usrmobile">Mobile:</label>
-						 <input type="text" class="form-control" name="mobile" value="<? echo $contact->mobile;?>" />
+						<label for="usrmobile">Mobile*:</label>
+						 <input type="text" class="form-control" name="mobile" value="<? echo $contact->mobile;?>" required/>
 					</div>
 					<div class="form-group">
-						<label for="usremail">Email:</label>
-						<input type="email" class="form-control" name="email" value="<? echo $contact->email;?>" />
+						<label for="usremail">Email*:</label>
+						<input type="email" class="form-control" name="email" value="<? echo $contact->email;?>" required/>
 					</div>
 					<div class="form-group">
 						<label for="usraddress">Address:</label>
 						 <textarea class="form-control" rows="5" name="address" ><? echo $contact->address;?></textarea>
 					</div>
 					<div class="form-group">
-						<label for="usrbirthday">Date Of Birth:</label>
+						<label for="usrbirthday">Date Of Birth*:</label>
 						 <input type="text" class="form-control" name="birthDay" value="<? echo $contact->birthday;?>" />
 					</div>
 					
 					<div class="form-group">
 						 <label for="usergroups">Groups:</label>
 						  <select class="form-control" name="groups">
-							<option value="av" >a</option>
-							<option value="bv" >b</option>
-							<option value="cv">c</option>
-							<option value="dv">d</option>
+						<option value="" selected>Contact Group</option>
+							<?php echo contactGroups::get_short_options(); ?>
 						  </select>
 					</div>
 					

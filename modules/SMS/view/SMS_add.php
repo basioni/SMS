@@ -67,7 +67,7 @@ $Calender->Get_Calender_lists();
 						<select class="form-control" id="asapi" name="asapi">
 								<? echo $API_options->get_short_options(); ?>
 						</select>
-						<label for="tmple" class="label label-primary">SMS Template:</label>
+						<label for="tmple" class="label label-primary">SMS Template*:</label>
 						<select class="form-control" id="tmple"  onClick="updateTemplateOptions();">
 								<option value="">I want to write new message</option>
 								<? echo $Template_options->get_short_options(); ?>
@@ -76,7 +76,7 @@ $Calender->Get_Calender_lists();
 					
 					<div class="form-group">
 					<label class="label label-primary" >Message *</label>
-						<textarea class="form-control" rows="3" id="smsMessage" name="messageBody" > </textarea>
+						<textarea class="form-control" rows="3" id="smsMessage" name="messageBody" required> </textarea>
 					</div>
 					
 					<div class="form-group">

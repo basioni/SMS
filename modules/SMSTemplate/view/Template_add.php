@@ -16,10 +16,10 @@ require '../SMSTemplate.php';
 					<label>Enter SMS Template details: </label>
 					</div>
 					<div class="form-group">
-						 <input type="text" class="form-control" name="templateName" placeholder="Template Name" value=""/>
+						 <input type="text" class="form-control" name="templateName" placeholder="Template Name*" value="" required/>
 					</div>
 					<div class="form-group">
-						 <input type="text" class="form-control" name="templateMessage" placeholder="Template Message" value=""/>
+						 <input type="text" class="form-control" name="templateMessage" placeholder="Template Message*" value="" required/>
 					</div>
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary" name="addNewTemplateForm" value="Add SMS Template" />

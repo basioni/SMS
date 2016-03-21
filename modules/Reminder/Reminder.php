@@ -37,8 +37,8 @@ var $rmnd_status= "";
 	if ($conn->connect_error)
 		die('Could not connect: '.$conn->connect_error);
 	
-	
-	$result = $conn->query("SELECT * FROM sms_reminders JOIN contacts on 	rmnd_to = sub_id WHERE rmnd_type='BirthdayWish' AND rmnd_status='Planned' ;");
+	$today = date("Y-m-d");
+	$result = $conn->query("SELECT * FROM sms_reminders JOIN contacts on 	rmnd_to = sub_id WHERE rmnd_type='BirthdayWish' AND rmnd_status='Planned' AND rmnd_date LIKE '". $today ."' ;");
 
 	while($row = $result->fetch_assoc())
 	{
@@ -46,7 +46,7 @@ var $rmnd_status= "";
 		$Brithdays .= '<td>'.$row['sub_first_name'] ." ". $row['sub_last_name'].'</td>';
 		$Brithdays .= '<td>'.$row['rmnd_date'].'</td>';
 		$Brithdays .= '<td>Planned</td>';
-		$Brithdays .= '<td class="text-center"><a href="#birthdaysend?id='.$row['rmnd_id'].'" title="SEND BIRTHDAY WISH"><i class="fa fa-paper-plane"></i></a></td></tr>';
+		$Brithdays .= '<td class="text-center"><a href="#birthdaysend?id='.$row['rmnd_id'].'" title="Edit & Send Birthday Wish"><i class="fa fa-paper-plane"></i></a></td></tr>';
 	}
 
 	$conn->close();
@@ -117,8 +117,8 @@ var $rmnd_status= "";
 	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
 	if ($conn->connect_error)
 		die('Could not connect: '.$conn->connect_error);
-	
-	$result = $conn->query("SELECT * FROM sms_reminders JOIN contacts on 	rmnd_to = sub_id WHERE rmnd_type='Appointment' AND rmnd_status='Planned' ;");
+		$today = date("Y-m-d");
+	$result = $conn->query("SELECT * FROM sms_reminders JOIN contacts on 	rmnd_to = sub_id WHERE rmnd_type='Appointment' AND rmnd_status='Planned'  AND rmnd_date LIKE '". $today ."' ;");
 
 	while($row = $result->fetch_assoc())
 	{

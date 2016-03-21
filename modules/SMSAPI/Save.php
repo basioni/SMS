@@ -27,6 +27,7 @@ $API->api_status = $_POST["apistatus"];
 
 $API->insert_api();
 
+echo'<script>alert("Your API has been successfully Added! " );</script>';
 echo '<script>location.replace("../../#smsApisList");</script>';
 }
 

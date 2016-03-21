@@ -23,6 +23,7 @@ $contactID = $REMINDER->rmnd_to ;
 	$REMINDER->rmnd_date = $next_year . date("-m-d");
 	$REMINDER->rmnd_to = $contactID ;
 	$REMINDER->insert_Appointment_reminder();
+echo'<script>alert("Your Appointment Reminder has been successfully sent! " );</script>';
 echo '<script>location.replace("../../#appointmentslist");</script>';
 }
 

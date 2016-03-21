@@ -100,7 +100,7 @@ var $template_message;
 		$templates_results .= '<tr><td>'.$row['template_id'].'</td>';
 		$templates_results .= '<td>'.$row['template_name'].'</td>';
 		$templates_results .= '<td>'.$row['template_message'].'</td>';
-		$templates_results .= '<td class="text-center"><a href="#templateview?id='.$row['template_id'].'" title="VIEW"><i class="fa fa-list"></i></a>  <a href="modules/SMSTemplate/Delete.php?id='.$row['template_id'].'" title="DELETE"><i class="fa fa-trash"></i></a></td></tr>';
+		$templates_results .= '<td class="text-center"><a href="#templateview?id='.$row['template_id'].'" title="VIEW"><i class="fa fa-list"></i></a> <a href="#templateedit?id='.$row['template_id'].'" title="EDIT" ><i class="fa fa-pencil"></i></a> <a href="modules/SMSTemplate/Delete.php?id='.$row['template_id'].'" title="DELETE"><i class="fa fa-trash"></i></a></td></tr>';
 	}
 
 	$conn->close();
@@ -124,7 +124,7 @@ var $template_message;
 		$templates_results .= '<tr><td>'.$row['template_id'].'</td>';
 		$templates_results .= '<td>'.$row['template_name'].'</td>';
 		$templates_results .= '<td>'.$row['template_message'].'</td>';
-		$templates_results .= '<td class="text-center"><a href="#templateview?id='.$row['template_id'].'" title="VIEW"><i class="fa fa-list"></i></a><a href="modules/SMSTemplate/Delete.php?id='.$row['template_id'].'" title="DELETE"><i class="fa fa-trash"></i></a></td></tr>';
+		$templates_results .= '<td class="text-center"><a href="#templateview?id='.$row['template_id'].'" title="VIEW"><i class="fa fa-list"></i></a> <a href="#templateedit?id='.$row['template_id'].'" title="EDIT" ><i class="fa fa-pencil"></i></a> <a href="modules/SMSTemplate/Delete.php?id='.$row['template_id'].'" title="DELETE"><i class="fa fa-trash"></i></a></td></tr>';
 	}
 
 	$conn->close();

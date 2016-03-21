@@ -12,6 +12,7 @@ $group->group_name = $_POST["groupName"];
 
 $group->insert_group();
 
+echo'<script>alert("Your Group has been successfully Added! " );</script>';
 echo '<script>location.replace("../../#contactgroups");</script>';
 }
 

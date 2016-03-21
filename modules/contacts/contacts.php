@@ -12,11 +12,12 @@ var $last_visit;
 var $status;
 var $group;
 
-	
-	// return Contact in JSON format
-	//function get_contact(){
-	//return '{"contact_id":"'.$this->$contact_id.'","user_name":"'.$this->$user_name.'", "first_name":"'.$this->$first_name.'", "last_name":"'.$this->$last_name.'", "email":"'.$this->$email.'", "mobile":"'.$this->$mobile.'", "address":"'.$this->$address.'", "birthday":"'.$this->$birthday.'", "status":"'.$this->$status.'", "group":"'.$this->$group.'"}' ;
-	//}
+/** return Contact in JSON format
+========================== **/	
+	 
+	function get_contact_JSON(){
+	return '{"contact_id":"'.$this->$contact_id.'","user_name":"'.$this->$user_name.'", "first_name":"'.$this->$first_name.'", "last_name":"'.$this->$last_name.'", "email":"'.$this->$email.'", "mobile":"'.$this->$mobile.'", "address":"'.$this->$address.'", "birthday":"'.$this->$birthday.'", "status":"'.$this->$status.'", "status":"'.$this->$status.'", "group":"'.$this->$group.'"}' ;
+	}
 	
 	///////////////////////////////////////////////////////////// insert new contact to DB.
 	function insert_contact()
@@ -172,6 +173,40 @@ var $group;
 	return $all_contacts;
 	}
 	
+	/** Return All Contacts in JSON format
+========================== **/	
+		function get_all_contacts_JSON()
+	{	
+	$all_contacts = '';
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	
+	if ($conn->connect_error)
+	{
+		die('Could not connect: '.$conn->connect_error);
+	}
+	
+	$result = $conn->query("SELECT * FROM contacts;");
+
+	while($row = $result->fetch_assoc())
+	{
+	   //$all_contacts .= '{"contact_id":"'.$row['sub_id'].'","user_name":"'.$row['sub_user_name'].'", "first_name":"'.$row['sub_first_name'].'", "last_name":"'.$row['sub_last_name'].'", "email":"'.$row['sub_email'].'", "mobile":"'.$row['sub_mobile'].'", "address":"'.$row['sub_address'].'", "birthday":"'.$row['sub_birthday'].'", "status":"'.$row['sub_status'].'", "group":"'.$row['sub_group'].'"},' ;
+		$all_contacts .= '{ "contact_id": "'.$row['sub_id'] .'" , ';
+		$all_contacts .= '"first_name": "'.$row['sub_first_name'] .'" , ';
+		$all_contacts .= ' "last_name": "'.$row['sub_last_name'] .'" , ';
+		$all_contacts .= ' "mobile": "'. $row['sub_mobile'] .'" , ';
+		$all_contacts .= ' "email": "'.$row['sub_email'] .'" , ';
+		$all_contacts .= ' "birthday": "'.$row['sub_birthday'] .'" , ';
+		$all_contacts .= ' "last_visit": "'.$row['sub_last_visit_date'] .'"  } , ';
+		//$all_contacts .= '<td class="text-center"><a href="#contactview?contact='.$row['sub_id'].'" title="VIEW"><i class="fa fa-list"></i></a> <a href="#contactedit?contact='.$row['sub_id'].'" title="EDIT" ><i class="fa fa-pencil"></i></a> <a href="modules/contacts/Delete.php?contact='.$row['sub_id'].'" title="DELETE"><i class="fa fa-trash"></i></a></td></tr>';
+	}
+	
+	$ContactsList =  '{ "contacts" :[ '   ;
+	$ContactsList .=  rtrim($all_contacts , " , ")  ;
+	$ContactsList .=  ' ] } ' ;
+	$conn->close();
+	
+	return $ContactsList;
+	}
 		///////////////////////////////////////////////////////// GET Contact ID
 	function get_contact_id()
 	{

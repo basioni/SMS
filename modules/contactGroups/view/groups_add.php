@@ -16,7 +16,7 @@ require '../contactGroups.php';
 					<label>Enter a new Contacts Group details: </label>
 					</div>
 					<div class="form-group">
-						 <input type="text" class="form-control" name="groupName" placeholder="Group Name" value=""/>
+						 <input type="text" class="form-control" name="groupName" placeholder="Group Name*" value="" required/>
 					</div>
 					
 					<div class="form-group">

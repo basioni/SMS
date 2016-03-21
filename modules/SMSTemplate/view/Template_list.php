@@ -14,11 +14,11 @@ require '../SMSTemplate.php';
 $templates_table = new SMSTemplate();
 $Tablerows = $templates_table->get_all_templates();
 echo 	'<div > 
-				<table class="table table-bordered">
+					<table class="table table-striped">
 				  	<thead>
 					  <tr class="info">
-						<th>Template ID</th>
-					    <th>Template name</th>
+						<th>ID</th>
+					    <th>Template Name</th>
 					    <th>Template Message</th>
 						<th>Actions</th>
 					  </tr>
