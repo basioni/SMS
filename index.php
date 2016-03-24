@@ -1,3 +1,7 @@
+<?php
+// Start the session
+session_start();
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -72,7 +76,13 @@ require_once 'modules/SMSTemplate/SMSTemplate.php';
 ?>
   </head>
   <body class="hold-transition skin-blue sidebar-mini" ng-app="MenuCntrlsApp">
-  
+  <?php
+
+if(!isset($_SESSION["admin"]))
+{
+echo '<script>location.replace("login.php");</script>';
+}
+?>
     <script src="modules/contacts/controllers/contactsController.js"></script>
   <script src="modules/contactGroups/controllers/groupsController.js"></script>
   <script src="modules/SMSTemplate/controllers/templatesController.js"></script>
@@ -202,7 +212,7 @@ require_once 'modules/SMSTemplate/SMSTemplate.php';
             <li class="treeview">
               <a href="">
                 <i class="fa fa-files-o"></i>
-                <span>My Phone Book</span>
+                <span>My Phone Book</span><i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
                 <li><a href="#contactslist"><i class="fa fa-user"></i> Contacts</a></li>
@@ -212,7 +222,7 @@ require_once 'modules/SMSTemplate/SMSTemplate.php';
 			<li class="treeview">
               <a href="">
                 <i class="fa fa-envelope-o"></i>
-                <span>My SMS</span>
+                <span>My SMS</span><i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
                 <li><a href="#smsTemplates"><i class="fa fa-th"></i> SMS Templates </a></li>
@@ -223,8 +233,8 @@ require_once 'modules/SMSTemplate/SMSTemplate.php';
             </li>
 			<li class="treeview">
               <a href="">
-                <i class="fa fa-bell"></i>
-                <span> My Birthday Wishes</span>
+                <i class="fa fa-birthday-cake"></i>
+                <span> My Birthday Wishes</span><i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
                 <li><a href="#birthdaywishes"><i class="fa fa-birthday-cake"></i>Today's Birthday Wishes <span class="label label-warning pull-right">{{ todaybirthdayCount }}</span></a></li>
@@ -234,7 +244,7 @@ require_once 'modules/SMSTemplate/SMSTemplate.php';
 			<li class="treeview">
               <a href="">
                 <i class="fa fa-bell"></i>
-                <span> My Appointments Reminders</span>
+                <span> My Appointments</span><i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
                 <li><a href="#appointmentslist"><i class="fa fa-paper-plane"></i>Today's Appointments <span class="label label-warning pull-right">{{ todayAppointCount }}</span></a></li>
