@@ -18,7 +18,7 @@ var $template_message;
 	if ($conn->connect_error)
 		die('Could not connect: '.$conn->connect_error);
 	
-	$result = $conn->query("INSERT INTO sms_templates SET template_name ='".$this->template_name."' , template_message ='".$this->template_message."' ;");
+	$result = $conn->query("INSERT INTO sms_templates SET template_name ='". $this->template_name ."' , template_message ='". $this->template_message ."' ;");
 	$conn->close();
 	}	
 	
@@ -107,6 +107,32 @@ var $template_message;
 	
 	return $templates_results;
 	}
+		
+	/** Return All Templates in JSON format
+========================== **/	
+		function get_all_templates_JSON()
+	{	
+	$all_templates = '';
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	if ($conn->connect_error)
+		die('Could not connect: '.$conn->connect_error);
+	
+	$result = $conn->query("SELECT * FROM sms_templates ; ");
+
+	while($row = $result->fetch_assoc())
+	{
+	   $all_templates .= '{ "template_id": "'.$row['template_id'] .'" , ';
+	   $all_templates .= '"template_name": "'.$row['template_name'] .'" , ';
+		$all_templates .= '"template_message": "'.$row['template_message'] .'" } , ';
+	}
+	$TemplatesList =  '{ "templateslists" :[ '   ;
+	$TemplatesList .=  rtrim($all_templates , " , ")  ;
+	$TemplatesList .=  ' ] } ' ;
+	$conn->close();
+	
+	return $TemplatesList;
+	}
+	
 	
 	///////////////////////////////////////////////////////// GET all templates rows
 	function get_query_templates()

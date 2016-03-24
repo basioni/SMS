@@ -102,7 +102,82 @@ var $snds_status= "";
 	
 	return $SMS;
 	}
+
+	/** Return All Scheduled SMS Count 
+========================== **/	
+		function get_all_scheduled_Count()
+	{	
+	$all_groups = '';
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	if ($conn->connect_error)
+		die('Could not connect: '.$conn->connect_error);
 	
+	
+	$result = $conn->query("SELECT * FROM sms_sends WHERE snds_type='Scheduled' AND snds_status='Planned';");
+	$num_rows = mysqli_num_rows($result);
+
+	
+	$conn->close();
+	
+	return $num_rows;
+	}
+
+	
+/** Return Today Scheduled SMS Count 
+========================== **/	
+		function get_today_scheduled_Count()
+	{	
+	$all_groups = '';
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	if ($conn->connect_error)
+		die('Could not connect: '.$conn->connect_error);
+	
+	$today = date("Y-m-d");
+	$result = $conn->query("SELECT * FROM sms_sends WHERE snds_type='Scheduled' AND snds_status='Planned' AND snds_date ='". $today ."';");
+	$num_rows = mysqli_num_rows($result);
+
+	
+	$conn->close();
+	
+	return $num_rows;
+	}	
+	
+/** Return Today Sent SMS Count in JSON format
+========================== **/	
+		function get_today_sent_Count()
+	{	
+	$all_groups = '';
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	if ($conn->connect_error)
+		die('Could not connect: '.$conn->connect_error);
+	
+	$today = date("Y-m-d");
+	$result = $conn->query("SELECT * FROM sms_sends WHERE snds_status='Sent' AND snds_date ='". $today ."' ;");
+	$num_rows = mysqli_num_rows($result);
+
+	
+	$conn->close();
+	
+	return $num_rows;
+	}
+	
+/** Return ALL Sent SMS Count
+========================== **/	
+		function get_all_sent_Count()
+	{	
+	$all_groups = '';
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	if ($conn->connect_error)
+		die('Could not connect: '.$conn->connect_error);
+	
+	$result = $conn->query("SELECT * FROM sms_sends WHERE snds_status='Sent'  ;");
+	$num_rows = mysqli_num_rows($result);
+
+	
+	$conn->close();
+	
+	return $num_rows;
+	}
 /* Send Message With Twilio
 ===========================*/ 	
 function send_with_twilio()

@@ -4,7 +4,7 @@ var MenuApp = angular.module('MenuCntrlsApp', ['ngRoute']);
 		
 			.when('/dashboard', {
 				templateUrl : 'modules/dashboard/view/dashboard.php',
-				controller  : 'mainController'
+				controller  : 'TopMenuCounters'
 			})
 
 			// routes for the contact Module
@@ -16,17 +16,22 @@ var MenuApp = angular.module('MenuCntrlsApp', ['ngRoute']);
 			
 			.when('/contactsadd', {
 				templateUrl : 'modules/contacts/view/contacts_add.php',
-				controller  : 'contactController'
+				controller  : 'contactsController'
 			})	
 			
 			.when('/contactview', {
 				templateUrl : function(params) {return 'modules/contacts/view/contacts_view.php?contact='+ params.contact;},
-				controller  : 'contactController'
+				controller  : 'contactsController'
 			})	
 			
 			.when('/contactedit', {
 				templateUrl : function(contacteditparams) {return 'modules/contacts/view/contacts_edit.php?contact='+ contacteditparams.contact;},
-				controller  : 'contactController'
+				controller  : 'contactsController'
+			})
+			
+			.when('/exportContacts', {
+				templateUrl : 'modules/contacts/export.php' ,
+				controller  : 'contactsController'
 			})
 			
 			// route for the contact Groups Views
@@ -52,23 +57,23 @@ var MenuApp = angular.module('MenuCntrlsApp', ['ngRoute']);
 			
 			// route for the SMS Templates View
 			.when('/smsTemplates', {
-				templateUrl : function(SMSParams) {return 'modules/SMSTemplate/view/Template_list.php?'+ SMSParams;},
-				controller  : 'SMSTemplateController'
+				templateUrl : 'modules/SMSTemplate/view/Template_list.php',
+				controller  : 'SMStemplatesController'
 			})
 			
 			.when('/TemplateAdd', {
 				templateUrl : 'modules/SMSTemplate/view/Template_add.php',
-				controller  : 'SMSTemplateController'
+				controller  : 'SMStemplatesController'
 			})	
 			
 			.when('/templateedit', {
 				templateUrl : function(TemplateParams) {return 'modules/SMSTemplate/view/Template_edit.php?id='+ TemplateParams.id;},
-				controller  : 'contactController'
+				controller  : 'SMStemplatesController'
 			})
 			
 			.when('/templateview', {
 				templateUrl : function(GroupsParams) {return 'modules/SMSTemplate/view/Template_view.php?id='+ GroupsParams.id;},
-				controller  : 'groupsController'
+				controller  : 'SMStemplatesController'
 			})	
 			
 			// route for the Sending SMS View
@@ -95,6 +100,10 @@ var MenuApp = angular.module('MenuCntrlsApp', ['ngRoute']);
 				templateUrl : 'modules/Reminder/view/Reminder_birthday_list.php',
 				controller  : 'birthdayWishesController'
 			})	
+			.when('/birthdayallwishes', {
+				templateUrl : 'modules/Reminder/view/Reminder_birthday_list_all.php',
+				controller  : 'birthdayWishesController'
+			})	
 			
 			.when('/birthdaysend', {
 				templateUrl : function(BirthdayParams) {return 'modules/Reminder/view/Reminder_birthday_send.php?id='+ BirthdayParams.id;},
@@ -104,6 +113,11 @@ var MenuApp = angular.module('MenuCntrlsApp', ['ngRoute']);
 			// route for the Appointments Reminders VIEW
 			.when('/appointmentslist', {
 				templateUrl : 'modules/Reminder/view/Reminder_appointment_list.php',
+				controller  : 'AppointmentsController'
+			})	
+			
+			.when('/appointmentsalllist', {
+				templateUrl : 'modules/Reminder/view/Reminder_appointment_list_all.php',
 				controller  : 'AppointmentsController'
 			})	
 			
@@ -121,7 +135,11 @@ var MenuApp = angular.module('MenuCntrlsApp', ['ngRoute']);
 			.when('/apiadd', {
 				templateUrl : 'modules/SMSAPI/view/APIs_add.php',
 				controller  : 'smshistoryController'
-			})				
+			})
+			 .otherwise({
+				redirectTo: '/dashboard'
+			  });
 			;
+			
 	});
 

@@ -1,32 +1,32 @@
 <?php
-require '../SMS.php';
+require '../Reminder.php';
 ?>
 <section class="container-fluid">
-	<div class="row">
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="mainsection">
+	<div class="row" >
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="mainsection">		
 		
-			<h2>Scheduled SMS</h2>
+			<h2>Birthday Wishes</h2>
 			<div class="main-area">
 			<?php
-$SMS_table = new SMS();
-$Tablerows = $SMS_table->get_sms_scheduled();
+$Reminder_table = new Reminder();
+$Tablerows = $Reminder_table->get_all_birthdays();
 echo 	'<div > 
 				<table class="table table-bordered">
 				  	<thead>
 					  <tr class="info">
 					    <th>ID</th>
-					    <th>Recipient</th>
+					    <th>Contact</th>
 						<th>Date</th>
-						<th>Message</th>
 						<th>Status</th>
+						<th>Actions</th>
 					  </tr>
 					</thead>
 					<tbody>
-					'.$Tablerows.'
+				'.$Tablerows.'
 					<tbody>
 				</table>
 		</div>
-';			
+';		
 ?>
 			</div>
 		</div>

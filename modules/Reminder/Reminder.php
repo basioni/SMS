@@ -29,7 +29,7 @@ var $rmnd_status= "";
 /* Get Birthday Wishes List
 ===========================*/ 		
 
-	function get_all_birthdays()
+	function get_today_birthdays()
 	{	
 	$Brithdays = '';
 	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
@@ -39,6 +39,33 @@ var $rmnd_status= "";
 	
 	$today = date("Y-m-d");
 	$result = $conn->query("SELECT * FROM sms_reminders JOIN contacts on 	rmnd_to = sub_id WHERE rmnd_type='BirthdayWish' AND rmnd_status='Planned' AND rmnd_date LIKE '". $today ."' ;");
+
+	while($row = $result->fetch_assoc())
+	{
+	   $Brithdays .= '<tr><td>'.$row['rmnd_id'].'</td>';
+		$Brithdays .= '<td>'.$row['sub_first_name'] ." ". $row['sub_last_name'].'</td>';
+		$Brithdays .= '<td>'.$row['rmnd_date'].'</td>';
+		$Brithdays .= '<td>Planned</td>';
+		$Brithdays .= '<td class="text-center"><a href="#birthdaysend?id='.$row['rmnd_id'].'" title="Edit & Send Birthday Wish"><i class="fa fa-paper-plane"></i></a></td></tr>';
+	}
+
+	$conn->close();
+	
+	return $Brithdays;
+	}
+	
+	/* Get Birthday Wishes List
+===========================*/ 		
+
+	function get_all_birthdays()
+	{	
+	$Brithdays = '';
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	
+	if ($conn->connect_error)
+		die('Could not connect: '.$conn->connect_error);
+	
+	$result = $conn->query("SELECT * FROM sms_reminders JOIN contacts on 	rmnd_to = sub_id WHERE rmnd_type='BirthdayWish' AND rmnd_status='Planned' ;");
 
 	while($row = $result->fetch_assoc())
 	{
@@ -108,10 +135,35 @@ var $rmnd_status= "";
 	$conn->close();
 	}	
 
-/* Get Appointments Remiders List
+/* Get All Appointments Remiders List
 ===========================*/ 		
 
 	function get_all_Appointments()
+	{	
+	$Brithdays = '';
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	if ($conn->connect_error)
+		die('Could not connect: '.$conn->connect_error);
+
+	$result = $conn->query("SELECT * FROM sms_reminders JOIN contacts on 	rmnd_to = sub_id WHERE rmnd_type='Appointment' AND rmnd_status='Planned'  ;");
+
+	while($row = $result->fetch_assoc())
+	{
+	   $Brithdays .= '<tr><td>'.$row['rmnd_id'].'</td>';
+		$Brithdays .= '<td>'.$row['sub_first_name'] ." ". $row['sub_last_name'].'</td>';
+		$Brithdays .= '<td>'.$row['rmnd_date'].'</td>';
+		$Brithdays .= '<td>Planned</td>';
+		$Brithdays .= '<td class="text-center"><a href="#appointmentsend?id='.$row['rmnd_id'].'" title="RECORD VISIT"><i class="fa fa-calendar-check-o"></i></a></td></tr>';
+	}
+
+	$conn->close();
+	
+	return $Brithdays;
+	}
+/* Get Today's Appointments Remiders List
+===========================*/ 		
+
+	function get_today_Appointments()
 	{	
 	$Brithdays = '';
 	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
@@ -132,6 +184,77 @@ var $rmnd_status= "";
 	$conn->close();
 	
 	return $Brithdays;
+	}
+
+/** Return Today Appointments Count
+========================== **/	
+		function get_all_appointments_Count()
+	{	
+	$all_groups = '';
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	if ($conn->connect_error)
+		die('Could not connect: '.$conn->connect_error);
+	$result = $conn->query("SELECT * FROM sms_reminders JOIN contacts on rmnd_to = sub_id WHERE rmnd_type='Appointment' AND rmnd_status='Planned'  ;");
+	$num_rows = mysqli_num_rows($result);
+	$conn->close();
+	return $num_rows;
+	}
+
+/** Return Today Appointments Count
+========================== **/	
+		function get_today_appointments_Count()
+	{	
+	$all_groups = '';
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	if ($conn->connect_error)
+		die('Could not connect: '.$conn->connect_error);
+	
+	$today = date("Y-m-d");
+	$result = $conn->query("SELECT * FROM sms_reminders JOIN contacts on 	rmnd_to = sub_id WHERE rmnd_type='Appointment' AND rmnd_status='Planned'  AND rmnd_date LIKE '". $today ."' ;");
+
+	$num_rows = mysqli_num_rows($result);
+
+	
+	$conn->close();
+	
+	return $num_rows;
+	}
+/** Return all Birthdaywishes Count
+========================== **/	
+		function get_all_birthdays_Count()
+	{	
+	$all_groups = '';
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	if ($conn->connect_error)
+		die('Could not connect: '.$conn->connect_error);
+	
+	$result = $conn->query("SELECT * FROM sms_reminders JOIN contacts on 	rmnd_to = sub_id WHERE rmnd_type='BirthdayWish' AND rmnd_status='Planned' ;");
+	$num_rows = mysqli_num_rows($result);
+
+	
+	$conn->close();
+	
+	return $num_rows;
+	}
+
+/** Return Today Birthday wishes Count
+========================== **/	
+		function get_today_birthdays_Count()
+	{	
+	$all_groups = '';
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	if ($conn->connect_error)
+		die('Could not connect: '.$conn->connect_error);
+	
+	$today = date("Y-m-d");
+	$result = $conn->query("SELECT * FROM sms_reminders JOIN contacts on 	rmnd_to = sub_id WHERE rmnd_type='BirthdayWish' AND rmnd_status='Planned'  AND rmnd_date LIKE '". $today ."' ;");
+
+	$num_rows = mysqli_num_rows($result);
+
+	
+	$conn->close();
+	
+	return $num_rows;
 	}
 	
 	/* Update Appointment

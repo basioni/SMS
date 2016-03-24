@@ -2,14 +2,14 @@
 require '../Reminder.php';
 ?>
 <section class="container-fluid">
-	<div class="row" style="min-height: 647px;">
-		<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" id="mainsection">
+	<div class="row" >
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="mainsection">
 		
-			<h2>Birthday Wishes</h2>
+			<h2>Today's Appointment Reminders</h2>
 			<div class="main-area">
 			<?php
 $Reminder_table = new Reminder();
-$Tablerows = $Reminder_table->get_all_appointments();
+$Tablerows = $Reminder_table->get_today_appointments();
 echo 	'<div > 
 				<table class="table table-bordered">
 				  	<thead>

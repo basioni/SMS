@@ -105,6 +105,35 @@ var $group_name;
 	return $all_contacts;
 	}
 	
+		
+	/** Return All Contact Groups in JSON format
+========================== **/	
+		function get_all_groups_JSON()
+	{	
+	$all_groups = '';
+	$conn = new mysqli("localhost","booking_sms_user","sms_user","booking_sms_manager");
+	
+	if ($conn->connect_error)
+	{
+		die('Could not connect: '.$conn->connect_error);
+	}
+	
+	
+	$result = $conn->query("SELECT * FROM contact_groups;");
+
+	while($row = $result->fetch_assoc())
+	{
+	   $all_groups .= '{ "group_id": "'.$row['group_id'] .'" , ';
+		$all_groups .= '"group_name": "'.$row['group_name'] .'" } , ';
+	}
+	$GroupsList =  '{ "groups" :[ '   ;
+	$GroupsList .=  rtrim($all_groups , " , ")  ;
+	$GroupsList .=  ' ] } ' ;
+	$conn->close();
+	
+	return $GroupsList;
+	}
+	
 	///////////////////////////////////////////////////////// GET all groups rows
 	function get_query_groups()
 	{	

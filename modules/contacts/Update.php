@@ -1,8 +1,6 @@
 <?php
-
-require 'contacts.php';
-
-
+require "contacts.php";
+ 
 $contact = new Contacts();
 $contact->load_contact($_POST["contact"]);
 
@@ -32,7 +30,7 @@ $contact->group .= $_POST["groups"];
 $contact->update_contact();
 
 echo'<script>alert("Your Contact has been successfully Updated! " );</script>';
-echo '<script>location.replace("../../#contactview?contact='.$_POST["contact"].'");</script>';
+echo '<script>location.replace("../../#contactslist");</script>';
 }
 
 ?>

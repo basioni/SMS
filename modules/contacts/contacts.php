@@ -185,7 +185,7 @@ var $group;
 		die('Could not connect: '.$conn->connect_error);
 	}
 	
-	$result = $conn->query("SELECT * FROM contacts;");
+	$result = $conn->query("SELECT DISTINCT * FROM contacts INNER JOIN contact_groups ON contacts.sub_group='' WHERE contacts.sub_group='' UNION (SELECT * FROM contacts INNER JOIN contact_groups ON contacts.sub_group=contact_groups.group_id) ;");
 
 	while($row = $result->fetch_assoc())
 	{
@@ -196,6 +196,12 @@ var $group;
 		$all_contacts .= ' "mobile": "'. $row['sub_mobile'] .'" , ';
 		$all_contacts .= ' "email": "'.$row['sub_email'] .'" , ';
 		$all_contacts .= ' "birthday": "'.$row['sub_birthday'] .'" , ';
+		$all_contacts .= ' "address": "'.$row['sub_address'] .'" , ';
+		$all_contacts .= ' "status": "'.$row['sub_status'] .'" , ';
+		if ($row['sub_group']=="")
+		$all_contacts .= ' "group": "None" , ';		
+		else
+		$all_contacts .= ' "group": "'.$row['group_name'] .'" , ';
 		$all_contacts .= ' "last_visit": "'.$row['sub_last_visit_date'] .'"  } , ';
 		//$all_contacts .= '<td class="text-center"><a href="#contactview?contact='.$row['sub_id'].'" title="VIEW"><i class="fa fa-list"></i></a> <a href="#contactedit?contact='.$row['sub_id'].'" title="EDIT" ><i class="fa fa-pencil"></i></a> <a href="modules/contacts/Delete.php?contact='.$row['sub_id'].'" title="DELETE"><i class="fa fa-trash"></i></a></td></tr>';
 	}
